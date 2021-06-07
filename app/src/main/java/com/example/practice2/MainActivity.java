@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String receivedDataFromFirstActivity;
     private long number;
+    private String st;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
