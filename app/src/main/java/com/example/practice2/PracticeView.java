@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.practice2.utilities.AppConstants;
-import com.example.practice2.utilities.AppUtilities;
 
 public class PracticeView extends AppCompatActivity {
 
@@ -48,8 +47,10 @@ public class PracticeView extends AppCompatActivity {
                     startActivity(moveForward);
 
                 }else{
-                    AppUtilities.showToast("Please input something...", 1, PracticeView.this);
+                    Toast.makeText(PracticeView.this, "Please input something...", Toast.LENGTH_LONG).show();
                 }
+
+
 
             }
         });
