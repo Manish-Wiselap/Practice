@@ -1,29 +1,26 @@
-package com.example.practice2.recycler_view_example;
+package com.example.practice2.user_details;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.practice2.R;
 import com.example.practice2.databinding.RecyclerViewExampleActivityBinding;
-import com.example.practice2.pojo.ProductInfo;
-import com.example.practice2.pojo.StudentModel;
+import com.example.practice2.pojo.CustomerInfoModel;
+import com.example.practice2.recycler_view_example.UserProfileAdapter;
 
 import java.util.ArrayList;
 
-public class RecyclerViewExample extends AppCompatActivity {
+public class UserDetailsActivity extends AppCompatActivity implements UserDetailsContract.UserDetailsView {
 
     private RecyclerViewExampleActivityBinding binding;
 
-    private StudentListAdapter adapter;
-
+    private UserDetailsPresenter userDetailsPresenter;
     private UserProfileAdapter userProfileAdapter;
-
-    GetUserDataFromRestAPI getUserDataFromRestAPI;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,10 +28,20 @@ public class RecyclerViewExample extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.recycler_view_example_activity);
 
         binding.listRV.setLayoutManager(new LinearLayoutManager(this));
+        userDetailsPresenter = new UserDetailsPresenter(this);
 
-        getUserDataFromRestAPI = new GetUserDataFromRestAPI();
-        userProfileAdapter = new UserProfileAdapter(getUserDataFromRestAPI.getUserData(), this);
+        userDetailsPresenter.getUserList(1);
 
+    }
+
+    @Override
+    public void showUserList(ArrayList<CustomerInfoModel> userList) {
+        userProfileAdapter = new UserProfileAdapter(userList, this);
         binding.listRV.setAdapter(userProfileAdapter);
+    }
+
+    @Override
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

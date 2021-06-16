@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.practice2.databinding.ActivityMainBinding;
 import com.example.practice2.pojo.StudentModel;
 import com.example.practice2.recycler_view_example.RecyclerViewExample;
+import com.example.practice2.user_details.UserDetailsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.setStudentInfo(studentModel);
 
         activityMainBinding.btn1.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, RecyclerViewExample.class));
+            startActivity(new Intent(MainActivity.this, UserDetailsActivity.class));
         });
 
     }
