@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="callBack"
+            type="com.example.practice2.user_details.UserDetailsActivity" />
+
+    </data>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,6 +32,18 @@
             android:id="@+id/listRV"
             android:layout_below="@+id/heading"
             android:layout_margin="2dp"
+            android:layout_above="@+id/getUserListBtn"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/getUserListBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Get List"
+            android:textAllCaps="false"
+            android:onClick="@{() -> callBack.onGetListBtnClicked()}"
             />
 
     </RelativeLayout>

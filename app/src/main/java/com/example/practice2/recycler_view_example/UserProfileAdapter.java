@@ -1,6 +1,9 @@
 package com.example.practice2.recycler_view_example;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -58,9 +61,33 @@ public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.
 
         public void setData(int position){
             binding.setUserProfile(userInfoList.get(position));
-
+            binding.setPosition(position);
             Glide.with(context).load(userInfoList.get(position).getAvatar()).into(binding.userProfilePicture);
+
+            binding.userNameET.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Log.e("text ", "change on " + position + " " + s.toString());
+                    userInfoList.get(position).setFirst_name(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
         }
+
+    }
+
+    public ArrayList<CustomerInfoModel> getUpdatedUserList(){
+        return userInfoList;
     }
 
 }

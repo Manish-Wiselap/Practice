@@ -1,6 +1,7 @@
 package com.example.practice2.user_details;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import com.example.practice2.R;
 import com.example.practice2.databinding.RecyclerViewExampleActivityBinding;
 import com.example.practice2.pojo.CustomerInfoModel;
 import com.example.practice2.recycler_view_example.UserProfileAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.recycler_view_example_activity);
+        binding.setCallBack(this);
 
         binding.listRV.setLayoutManager(new LinearLayoutManager(this));
         userDetailsPresenter = new UserDetailsPresenter(this);
@@ -44,4 +47,10 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+    public void onGetListBtnClicked(){
+        ArrayList<CustomerInfoModel> customerInfoModels = userProfileAdapter.getUpdatedUserList();
+        Log.e("updateList", new Gson().toJson(customerInfoModels));
+    }
+
 }

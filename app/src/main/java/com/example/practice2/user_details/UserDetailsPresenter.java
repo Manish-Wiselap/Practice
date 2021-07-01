@@ -1,7 +1,13 @@
 package com.example.practice2.user_details;
 
+import android.util.Log;
+
 import com.example.practice2.pojo.CustomerExtraInfoModel;
+import com.example.practice2.pojo.CustomerInfoModel;
 import com.example.practice2.retrofit.APIClient;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +29,7 @@ public class UserDetailsPresenter implements UserDetailsContract.UserDetailsBack
         userDetailsService.getCustomerData(pageNumber).enqueue(new Callback<CustomerExtraInfoModel>() {
             @Override
             public void onResponse(Call<CustomerExtraInfoModel> call, Response<CustomerExtraInfoModel> response) {
+                Log.e("internetData", new Gson().toJson(response.body()));
                 view.showUserList(response.body().getData());
             }
 

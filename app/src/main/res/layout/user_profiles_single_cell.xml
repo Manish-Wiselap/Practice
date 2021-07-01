@@ -7,6 +7,10 @@
             name="userProfile"
             type="com.example.practice2.pojo.CustomerInfoModel" />
 
+        <variable
+            name="position"
+            type="int" />
+
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,10 +48,10 @@
                 android:layout_alignParentTop="true"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/userProfileName"
+                android:id="@+id/userNameET"
                 android:text="@{userProfile.first_name + ` ` + userProfile.last_name}"
                 android:textSize="18sp"
                 android:textColor="#3F51B5"
