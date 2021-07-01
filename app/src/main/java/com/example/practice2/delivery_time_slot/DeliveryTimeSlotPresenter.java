@@ -1,6 +1,7 @@
 package com.example.practice2.delivery_time_slot;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.practice2.pojo.DeliveryTimeSlotModel;
 import com.example.practice2.pojo.WrappedResponse;
@@ -23,6 +24,9 @@ public class DeliveryTimeSlotPresenter implements DeliveryTimeSlotContract.Deliv
 
     @Override
     public void updateDeliveryTimeSlot(String timeSlotName, String timeSlotStartTime, String timeSlotEndTime) {
+
+        view.showLoadingDialog();
+
         DeliveryTimeSlotModel deliveryTimeSlotModel = new DeliveryTimeSlotModel(
                 timeSlotStartTime,
                 timeSlotEndTime,
@@ -36,11 +40,14 @@ public class DeliveryTimeSlotPresenter implements DeliveryTimeSlotContract.Deliv
         deliveryTimeSlotService.updateDeliveryTimeSlot(deliveryTimeSlotModel).enqueue(new Callback<WrappedResponse>() {
             @Override
             public void onResponse(Call<WrappedResponse> call, Response<WrappedResponse> response) {
+                view.hideLoadingDialog();
+                view.showToastMessage("Updated Successfully", Toast.LENGTH_LONG);
                 Log.e("onSuccess", new Gson().toJson(response));
             }
 
             @Override
             public void onFailure(Call<WrappedResponse> call, Throwable t) {
+                view.hideLoadingDialog();
                 Log.e("onSuccess", t.getMessage());
             }
         });

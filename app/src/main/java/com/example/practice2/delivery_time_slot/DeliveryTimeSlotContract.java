@@ -1,8 +1,10 @@
 package com.example.practice2.delivery_time_slot;
 
+import com.example.practice2.base_classes.BaseContract;
+
 public interface DeliveryTimeSlotContract {
 
-    interface DeliveryTimeSlotView{
+    interface DeliveryTimeSlotView extends BaseContract.BaseView {
 
     }
 
