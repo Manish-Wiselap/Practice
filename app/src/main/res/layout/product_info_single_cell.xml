@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="productModel"
+            type="com.example.practice2.pojo.ProductInfo" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPadding="4dp"
+        android:layout_margin="3dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="5dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/productNameLabel"
+                android:text="Product name: "
+                android:textSize="18sp"
+                android:textColor="#6F6F6F"
+                android:layout_alignParentTop="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/productName"
+                android:text="@{productModel.productName}"
+                android:textSize="18sp"
+                android:textColor="#3F51B5"
+                android:layout_toEndOf="@+id/productNameLabel"
+                android:layout_marginStart="10dp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
